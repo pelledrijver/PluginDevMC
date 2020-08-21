@@ -1,0 +1,7 @@
+main: com.github.pelledrijver.HelloWorld.Main
+name: Hello_Test_Plugin
+version: 1.0
+author: Pelle_Drijver
+
+commands:
+  Hello:

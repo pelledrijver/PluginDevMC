@@ -1,0 +1,7 @@
+main: com.github.pelledrijver.Doctor.Main
+name: Doctor
+version: 1.0
+author: Pelle_Drijver
+
+commands:
+  Doctor:

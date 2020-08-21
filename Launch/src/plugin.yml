@@ -1,0 +1,8 @@
+main: com.github.pelledrijver.Launch.Main
+name: Launch
+version: 1.0
+author: Pelle_Drijver
+
+commands:
+  Launch:
+    aliases: lch
