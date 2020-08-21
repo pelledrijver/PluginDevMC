@@ -1,0 +1,8 @@
+main: com.github.pelledrijver.GodBoots.Main
+name: GodBoots
+version: 1.0
+author: Pelle_Drijver
+api-version: 1.13
+
+commands:
+  GodBoots:
