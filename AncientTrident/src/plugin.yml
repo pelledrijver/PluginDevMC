@@ -1,0 +1,8 @@
+main: com.github.pelledrijver.AncientTrident.Main
+name: AncientTrident
+version: 1.0
+author: Pelle_Drijver
+
+
+commands:
+  Trident:
