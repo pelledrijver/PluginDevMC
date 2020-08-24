@@ -1,16 +1,21 @@
 package com.github.pelledrijver.HelloWorld;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class Main extends JavaPlugin{
+public class Main extends JavaPlugin implements Listener{
 
 	@Override
 	public void onEnable() {
+		this.getServer().getPluginManager().registerEvents(this, this);
 		//startup
 		//reload
 		//plugin reloads
@@ -45,7 +50,20 @@ public class Main extends JavaPlugin{
 		
 		return false;
 	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+			@Override
+            public void run() {
+				player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Hi " + ChatColor.DARK_RED + "" + ChatColor.BOLD + player.getName() + ChatColor.RED + "" + ChatColor.BOLD +" en welkom op de server!");
+				player.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Gebruik " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "/help" + ChatColor.RED + "" + ChatColor.BOLD +" voor meer informatie over de plugin commands ;)");
+
+            }
+		}, 25);
 		
+	}
 
 
 	
