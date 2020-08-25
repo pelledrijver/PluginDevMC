@@ -1,0 +1,8 @@
+main: com.github.pelledrijver.DiscordChat.Main
+name: DiscordChat
+version: 1.0
+author: Pelle_Drijver
+
+commands:
+  DiscordChat:
+    aliases: discord
