@@ -1,6 +1,7 @@
 package com.github.pelledrijver.DiscordChat;
 
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ import net.md_5.bungee.api.ChatColor;
 public class Main extends JavaPlugin implements Listener{    
 	
 	Socket client;
+	PrintWriter output;
 	
 	@Override
 	public void onEnable() {
@@ -46,8 +48,8 @@ public class Main extends JavaPlugin implements Listener{
 		            	Bukkit.broadcastMessage(ChatColor.GREEN + "Server is geconnect met socket " + client.getRemoteSocketAddress());
 		            	//Bukkit.broadcastMessage(client.isConnected() ? "Yes" : "No!");
 		            	Scanner input = new Scanner(client.getInputStream());
+		            	output = new PrintWriter(client.getOutputStream());
 		                String temp = input.nextLine();
-		                PrintStream ps = new PrintStream(client.getOutputStream());
 		                while(true) {
 		                	Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "[Discord] " + ChatColor.WHITE + temp);
 		                	temp = input.nextLine();
@@ -68,5 +70,14 @@ public class Main extends JavaPlugin implements Listener{
 	@EventHandler
 	public void onMessage(AsyncPlayerChatEvent event) {
 		String message = event.getMessage();
+		if(!message.startsWith("/")) {
+			try {
+				output.println("[" + event.getPlayer().getName() + "]: " + message);
+				output.flush();
+			}
+			catch(Exception e) {
+				Bukkit.broadcastMessage(ChatColor.RED + "Could not send message to Discord");
+			}
+		}
 	}
 }
